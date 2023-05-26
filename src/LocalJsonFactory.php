@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kaiseki
-\WordPress\ACF;
+namespace Kaiseki\WordPress\ACF;
 
 use Kaiseki\Config\Config;
 use Kaiseki\WordPress\Environment\Environment;

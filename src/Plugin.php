@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kaiseki
-\WordPress\ACF;
+namespace Kaiseki\WordPress\ACF;
 
 use function function_exists;
 use function is_plugin_active;
