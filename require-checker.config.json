@@ -2,7 +2,13 @@
     "symbol-whitelist" : [
         "null", "true", "false",
         "static", "self", "parent",
-        "array", "string", "int", "float", "bool", "iterable", "callable", "void", "object"
+        "array", "string", "int", "float", "bool", "iterable", "callable", "void", "object",
+        "acf_update_setting",
+        "add_action",
+        "add_filter",
+        "is_plugin_active",
+        "_x"
+
     ],
     "php-core-extensions" : [
         "Core",

@@ -32,6 +32,8 @@
     "php": "^8.1",
     "ext-ctype": "*",
     "kaiseki/config": "1.0.0",
+    "kaiseki/wp-env": "dev-master",
+    "kaiseki/wp-hook": "dev-dev",
     "psr/container": "^1.1",
     "thecodingmachine/safe": "^1.3"
   },
