@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Kaiskei\WordPress\ACF;
+namespace Kaiseki
+\WordPress\ACF;
 
 use Kaiseki\WordPress\Environment\EnvironmentInterface;
 use Kaiseki\WordPress\Hook\HookCallbackProviderInterface;
