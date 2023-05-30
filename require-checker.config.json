@@ -7,7 +7,8 @@
         "add_action",
         "add_filter",
         "is_plugin_active",
-        "_x"
+        "_x",
+        "GOOGLE_MAPS_API_KEY"
 
     ],
     "php-core-extensions" : [

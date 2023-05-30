@@ -6,6 +6,8 @@ namespace Kaiseki\WordPress\ACF;
 
 use Kaiseki\WordPress\Hook\HookCallbackProviderInterface;
 
+use function defined;
+
 final class GoogleApiKey implements HookCallbackProviderInterface
 {
     public function __construct(private readonly ?string $googleApiKey)
@@ -19,9 +21,21 @@ final class GoogleApiKey implements HookCallbackProviderInterface
 
     public function addGoogleApiKey(): void
     {
-        if ($this->googleApiKey === null) {
+        $key = $this->getGoogleApiKey();
+        if ($key === null) {
             return;
         }
-        acf_update_setting('google_api_key', $this->googleApiKey);
+        acf_update_setting('google_api_key', $key);
+    }
+
+    public function getGoogleApiKey(): ?string
+    {
+        if (defined('GOOGLE_MAPS_API_KEY')) {
+            return GOOGLE_MAPS_API_KEY;
+        }
+        if ($this->googleApiKey !== null && $this->googleApiKey !== '') {
+            return $this->googleApiKey;
+        }
+        return null;
     }
 }

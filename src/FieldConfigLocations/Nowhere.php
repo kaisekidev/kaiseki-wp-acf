@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kaiseki
-\WordPress\ACF\FieldConfigLocations;
+namespace Kaiseki\WordPress\ACF\FieldConfigLocations;
 
 use Kaiseki\WordPress\Hook\HookCallbackProviderInterface;
 
