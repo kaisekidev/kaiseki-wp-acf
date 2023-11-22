@@ -16,7 +16,9 @@ use function file_exists;
 
 final class LocalJson implements HookCallbackProviderInterface
 {
-    /** @param list<string> $loadPaths */
+    /**
+     * @param list<string> $loadPaths
+     */
     public function __construct(
         private readonly EnvironmentInterface $environment,
         private readonly array $loadPaths,
@@ -42,6 +44,7 @@ final class LocalJson implements HookCallbackProviderInterface
 
     /**
      * @param array<string> $paths
+     *
      * @return array<string>
      */
     public function addLoadPaths(array $paths = []): array
@@ -69,6 +72,8 @@ final class LocalJson implements HookCallbackProviderInterface
     }
 
     /**
+     * @param string $path
+     *
      * @throws FilesystemException
      */
     private function createFolder(string $path): void

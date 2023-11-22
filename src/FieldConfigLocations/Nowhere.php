@@ -17,6 +17,7 @@ final class Nowhere implements HookCallbackProviderInterface
 
     /**
      * @param array<string, array<string, string>> $choices
+     *
      * @return array<string, array<string, string>>
      */
     public static function addNowhereLocationType(array $choices = []): array

@@ -18,7 +18,7 @@ final class LocalJsonFactory
         return new LocalJson(
             $container->get(Environment::class),
             $loadPaths,
-            $config->string('acf/local_json/save_path', null)
+            $config->string('acf/local_json/save_path', null, true)
         );
     }
 }
