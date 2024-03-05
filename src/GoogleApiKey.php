@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Kaiseki\WordPress\ACF;
 
-use Kaiseki\WordPress\Hook\HookCallbackProviderInterface;
+use Kaiseki\WordPress\Hook\HookProviderInterface;
 
+use function acf_update_setting;
+use function add_action;
 use function defined;
 
-final class GoogleApiKey implements HookCallbackProviderInterface
+final class GoogleApiKey implements HookProviderInterface
 {
     public function __construct(private readonly ?string $googleApiKey)
     {
     }
 
-    public function registerHookCallbacks(): void
+    public function addHooks(): void
     {
         add_action('acf/init', [$this, 'addGoogleApiKey']);
     }
@@ -36,6 +38,7 @@ final class GoogleApiKey implements HookCallbackProviderInterface
         if ($this->googleApiKey !== null && $this->googleApiKey !== '') {
             return $this->googleApiKey;
         }
+
         return null;
     }
 }

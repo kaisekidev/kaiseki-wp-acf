@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Kaiseki\WordPress\ACF\FieldConfigLocations;
 
-use Kaiseki\WordPress\Hook\HookCallbackProviderInterface;
+use Kaiseki\WordPress\Hook\HookProviderInterface;
 
+use function _x;
 use function add_filter;
 
-final class Nowhere implements HookCallbackProviderInterface
+final class Nowhere implements HookProviderInterface
 {
-    public function registerHookCallbacks(): void
+    public function addHooks(): void
     {
         add_filter('acf/location/rule_types', [$this, 'addNowhereLocationType']);
     }
@@ -24,6 +25,7 @@ final class Nowhere implements HookCallbackProviderInterface
     {
         $choices['Basic']['nowhere'] = _x('Nowhere', 'kaiseki-wp-acf', 'kaiseki');
         \Safe\ksort($choices);
+
         return $choices;
     }
 }

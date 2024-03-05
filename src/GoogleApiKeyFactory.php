@@ -11,6 +11,6 @@ final class GoogleApiKeyFactory
 {
     public function __invoke(ContainerInterface $container): GoogleApiKey
     {
-        return new GoogleApiKey(Config::get($container)->string('acf/google_api_key', null));
+        return new GoogleApiKey(Config::fromContainer($container)->string('acf.google_api_key'));
     }
 }

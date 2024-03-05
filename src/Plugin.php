@@ -20,6 +20,7 @@ final class Plugin
         if ($plugin !== '') {
             return is_plugin_active($plugin);
         }
+
         return is_plugin_active(self::PRO_PLUGIN_NAME) || is_plugin_active(self::PLUGIN_NAME);
     }
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Kaiseki\WordPress\ACF;
 
 use Kaiseki\WordPress\Environment\EnvironmentInterface;
-use Kaiseki\WordPress\Hook\HookCallbackProviderInterface;
+use Kaiseki\WordPress\Hook\HookProviderInterface;
 use RuntimeException;
 use Safe\Exceptions\FilesystemException;
 
@@ -14,10 +14,12 @@ use function array_merge;
 use function count;
 use function file_exists;
 
-final class LocalJson implements HookCallbackProviderInterface
+final class LocalJson implements HookProviderInterface
 {
     /**
-     * @param list<string> $loadPaths
+     * @param EnvironmentInterface $environment
+     * @param list<string>         $loadPaths
+     * @param ?string              $savePath
      */
     public function __construct(
         private readonly EnvironmentInterface $environment,
@@ -29,7 +31,7 @@ final class LocalJson implements HookCallbackProviderInterface
     /**
      * @throws FilesystemException
      */
-    public function registerHookCallbacks(): void
+    public function addHooks(): void
     {
         if (count($this->loadPaths) > 0) {
             $this->checkLoadPathProtection();
@@ -57,6 +59,7 @@ final class LocalJson implements HookCallbackProviderInterface
         if (!$this->environment->isDevelopment() && !$this->environment->isLocal()) {
             return null;
         }
+
         return $this->savePath !== '' ? $this->savePath : $path;
     }
 
@@ -67,6 +70,7 @@ final class LocalJson implements HookCallbackProviderInterface
             if (file_exists($filename)) {
                 continue;
             }
+
             throw new RuntimeException('index.php missing from acf load path "' . $path . '"');
         }
     }
