@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Kaiseki\WordPress\ACF;
 
+use Kaiseki\WordPress\ACF\Cli\SyncFieldGroups;
+
 final class ConfigProvider
 {
     /**
@@ -18,6 +20,11 @@ final class ConfigProvider
                     'save_path' => '',
                 ],
                 'google_api_key' => '',
+            ],
+            'hook' => [
+                'provider' => [
+                    SyncFieldGroups::class,
+                ],
             ],
             'dependencies' => [
                 'factories' => [
