@@ -8,6 +8,7 @@ use Kaiseki\WordPress\Hook\HookProviderInterface;
 
 use function _x;
 use function add_filter;
+use function ksort;
 
 final class Nowhere implements HookProviderInterface
 {
@@ -24,7 +25,7 @@ final class Nowhere implements HookProviderInterface
     public static function addNowhereLocationType(array $choices = []): array
     {
         $choices['Basic']['nowhere'] = _x('Nowhere', 'kaiseki-wp-acf', 'kaiseki');
-        \Safe\ksort($choices);
+        ksort($choices);
 
         return $choices;
     }

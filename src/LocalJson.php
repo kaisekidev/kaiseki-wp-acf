@@ -7,12 +7,12 @@ namespace Kaiseki\WordPress\ACF;
 use Kaiseki\WordPress\Environment\EnvironmentInterface;
 use Kaiseki\WordPress\Hook\HookProviderInterface;
 use RuntimeException;
-use Safe\Exceptions\FilesystemException;
 
 use function add_filter;
 use function array_merge;
 use function count;
 use function file_exists;
+use function mkdir;
 
 final class LocalJson implements HookProviderInterface
 {
@@ -28,9 +28,6 @@ final class LocalJson implements HookProviderInterface
     ) {
     }
 
-    /**
-     * @throws FilesystemException
-     */
     public function addHooks(): void
     {
         if (count($this->loadPaths) > 0) {
@@ -77,14 +74,12 @@ final class LocalJson implements HookProviderInterface
 
     /**
      * @param string $path
-     *
-     * @throws FilesystemException
      */
     private function createFolder(string $path): void
     {
         if (file_exists($path)) {
             return;
         }
-        \Safe\mkdir($path, 0777, true);
+        mkdir($path, 0777, true);
     }
 }
