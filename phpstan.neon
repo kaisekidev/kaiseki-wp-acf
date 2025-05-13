@@ -7,3 +7,4 @@ parameters:
     scanFiles:
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
         - vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
+        - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
