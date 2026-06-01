@@ -19,6 +19,7 @@ use function class_exists;
 use function defined;
 use function file_get_contents;
 use function is_array;
+use function is_int;
 use function is_string;
 use function json_decode;
 use function sprintf;
@@ -86,10 +87,11 @@ final class SyncFieldGroups implements HookProviderInterface
             }
 
             $localFieldGroup = json_decode($fileContents, true);
-            if (!is_array($localFieldGroup)) {
+            $id = $fieldGroup['ID'] ?? null;
+            if (!is_array($localFieldGroup) || (!is_int($id) && !is_string($id))) {
                 continue;
             }
-            $localFieldGroup['ID'] = $fieldGroup['ID'] ?? null;
+            $localFieldGroup['ID'] = $id;
 
             $importedFieldGroup = acf_import_field_group($localFieldGroup);
             $title = is_array($importedFieldGroup) ? ($importedFieldGroup['title'] ?? '') : '';
