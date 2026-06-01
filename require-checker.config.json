@@ -2,14 +2,18 @@
     "symbol-whitelist" : [
         "null", "true", "false",
         "static", "self", "parent",
-        "array", "string", "int", "float", "bool", "iterable", "callable", "void", "object",
-        "acf_update_setting",
+        "array", "string", "int", "float", "bool", "iterable", "callable", "void", "object", "mixed",
+        "_x",
         "add_action",
         "add_filter",
         "is_plugin_active",
-        "_x",
-        "GOOGLE_MAPS_API_KEY"
-
+        "acf_get_instance",
+        "acf_get_local_json_files",
+        "acf_import_field_group",
+        "acf_include",
+        "acf_update_setting",
+        "GOOGLE_MAPS_API_KEY",
+        "WP_CLI"
     ],
     "php-core-extensions" : [
         "Core",

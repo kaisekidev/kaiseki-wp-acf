@@ -1,10 +1,8 @@
+includes:
+    - vendor/kaiseki/php-coding-standard/phpstan/kaiseki.neon
 parameters:
-    level: max
-    treatPhpDocTypesAsCertain: false
     paths:
-        - src/
-        - tests/
+        - src
     scanFiles:
-        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
         - vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
         - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
