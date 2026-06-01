@@ -9,6 +9,7 @@ use Kaiseki\WordPress\Hook\HookProviderInterface;
 use function acf_update_setting;
 use function add_action;
 use function defined;
+use function is_string;
 
 final class GoogleApiKey implements HookProviderInterface
 {
@@ -32,7 +33,7 @@ final class GoogleApiKey implements HookProviderInterface
 
     public function getGoogleApiKey(): ?string
     {
-        if (defined('GOOGLE_MAPS_API_KEY')) {
+        if (defined('GOOGLE_MAPS_API_KEY') && is_string(GOOGLE_MAPS_API_KEY)) {
             return GOOGLE_MAPS_API_KEY;
         }
         if ($this->googleApiKey !== null && $this->googleApiKey !== '') {

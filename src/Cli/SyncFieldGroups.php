@@ -18,15 +18,11 @@ use function add_action;
 use function class_exists;
 use function defined;
 use function file_get_contents;
+use function is_array;
+use function is_string;
 use function json_decode;
 use function sprintf;
 
-/**
- * @phpstan-type FieldGroup array{
- *     ID: int|string,
- *     title: string,
- * }
- */
 final class SyncFieldGroups implements HookProviderInterface
 {
     public const COMMAND = 'kaiseki acf-sync-field-groups';
@@ -80,17 +76,24 @@ final class SyncFieldGroups implements HookProviderInterface
 
         $count = 0;
         foreach ($fieldGroupsClass->sync as $key => $fieldGroup) {
-            $fileContents = file_get_contents($files[$key]);
+            $file = $files[$key] ?? null;
+            if (!is_array($fieldGroup) || !is_string($file)) {
+                continue;
+            }
+            $fileContents = file_get_contents($file);
             if ($fileContents === false) {
                 continue;
             }
 
-            /** @var FieldGroup $localFieldGroup */
             $localFieldGroup = json_decode($fileContents, true);
-            $localFieldGroup['ID'] = $fieldGroup['ID'];
+            if (!is_array($localFieldGroup)) {
+                continue;
+            }
+            $localFieldGroup['ID'] = $fieldGroup['ID'] ?? null;
 
             $importedFieldGroup = acf_import_field_group($localFieldGroup);
-            $this->logger->info(sprintf('Synced ACF field group: %s', $importedFieldGroup['title']), true);
+            $title = is_array($importedFieldGroup) ? ($importedFieldGroup['title'] ?? '') : '';
+            $this->logger->info(sprintf('Synced ACF field group: %s', is_string($title) ? $title : ''), true);
             $count++;
         }
 
